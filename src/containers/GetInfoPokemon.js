@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Pokemon from '../components/Pokemon'
+import Pokedex from '../components/Pokedex'
+
 
 const URI_URL= 'http://pokeapi.co/api/v2/pokemon?limit=151'
 
@@ -10,6 +11,7 @@ export default class GetInfoPokemon extends Component {
           list : [],
           fetched : false,
           loading : false,
+          initialPokemon: 0
         };
       }
     componentWillMount(){
@@ -19,25 +21,24 @@ export default class GetInfoPokemon extends Component {
             this.setState({
               list : data.results,
               loading : true,
-              fetched : true
+              fetched : true,
+              initialPokemon: 5
             });
           });
     }
     render(){
-      const {fetched, loading, list} = this.state;
+      const {fetched, loading} = this.state;
       let content ;
       if(fetched){
-        content =
-        <div className="row">
-          { list.map((item,index)=><Pokemon key={item.name} id={index+1} pokemon={item}/>) }
-        </div>;
+        content = <Pokedex name={this.state.list[this.state.initialPokemon].name} url={this.state.list[this.state.initialPokemon].url}/>
+        ;
       }else if(loading && !fetched){
           content = <p> Loading...</p>;
       }
       else{
         content = <div/>;
       }
-      return(<div className="container">
+      return(<div>
         {content}
       </div>)
     }

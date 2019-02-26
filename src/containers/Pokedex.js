@@ -1,15 +1,21 @@
 import React  from 'react';
 import Pokemon  from './Pokemon';
 import GetAditionalInfo from './GetAditionalInfo';
+import propTypesRange from 'prop-types-range'; 
 
 let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/NOMBRE.png';
 
  class Pokedex extends React.PureComponent{
-    constructor(props){
-        super(props);
-    }
     render(){
-         console.log("entro a pokedex",this.props.url)
+        let prevButton;
+        let backButton;
+        if(this.props.initialPokemon===0){
+            prevButton = <div id="botcross"><div id="downT"></div></div>
+            backButton = <div id="leftcross"><div id="leftT"></div></div>
+        }else{
+            prevButton = <div id="botcross" onClick={this.props.handleClickPrev} valor="1"><div id="downT" className="greendown"></div></div>
+            backButton = <div id="leftcross" onClick={this.props.handleClickPrev} valor="5"><div id="leftT" className="greenleft"></div></div>
+        }
     return(
     <div id="pokedex">
         <div id="left">
@@ -48,21 +54,17 @@ let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/de
             <div id="barbutton1"></div>
             <div id="barbutton2"></div>
             <div id="cross">
-            <div id="leftcross">
-                <div id="leftT"></div>
-            </div>
-            <div id="topcross" onClick={this.props.handleClickNext}>
+            {backButton}
+            <div id="topcross" onClick={this.props.handleClickNext} valor="1">
                 <div id="upT"></div>
             </div>
-            <div id="rightcross">
+            <div id="rightcross" onClick={this.props.handleClickNext} valor="5">
                 <div id="rightT"></div>
             </div>
             <div id="midcross">
                 <div id="midCircle"></div>
             </div>
-            <div id="botcross" onClick={this.props.handleClickPrev}>
-                <div id="downT"></div>
-            </div>
+            {prevButton}
             </div>
         </div>
         <div id="right">
@@ -95,6 +97,11 @@ let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/de
     </div>
     )
 }
+
 }
+
+Pokedex.propTypes = {
+    initialPokemon: propTypesRange(0, 150)
+};
 
 export default Pokedex;

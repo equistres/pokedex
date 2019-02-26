@@ -654,7 +654,7 @@ html, body{
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-top: 10px solid #50fb05;
+		border-top: 10px solid #111;
 
 		position: absolute;
 		bottom: 5px;
@@ -679,7 +679,7 @@ html, body{
 		width: 0;
 		height: 0;
 		border-top: 10px solid transparent;
-		border-left: 10px solid #111;
+		border-left: 10px solid #50fb05;
 		border-bottom: 10px solid transparent;
 
 		position: absolute;
@@ -1073,3 +1073,9 @@ html, body{
 
 }
 
+.greendown{
+	border-top: 10px solid #50fb05!important;
+}
+.greenleft{
+	border-right: 10px solid #50fb05!important;
+}

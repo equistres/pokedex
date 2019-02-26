@@ -9,13 +9,8 @@ class GetAditionalInfo extends Component {
           fetched : false,
           loading : false
         };
-      }
-    test = () => {
-      console.log();
     }
-
     componentWillMount(){
-      
       fetch(this.props.Url)
         .then(response => response.json())
         .then(data=>{
@@ -27,7 +22,6 @@ class GetAditionalInfo extends Component {
           });
     }
     componentWillReceiveProps(newprop){
-      console.log("componentWillReceiveProps", newprop, this.props.Url)
       fetch(newprop.Url)
       .then(response => response.json())
       .then(data=>{
@@ -37,9 +31,9 @@ class GetAditionalInfo extends Component {
             fetched : true
           });
         });
-    }    
+    }
+
     render(){
-        console.log("esta es la url en aditionalinfo!!!", this.props.Url)
         const {fetched, loading, pokemon} = this.state;
         let types = [];
         let abilities = [];

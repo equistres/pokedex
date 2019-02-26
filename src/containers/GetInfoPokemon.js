@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import Pokedex from './Pokedex';
+import propTypesRange from 'prop-types-range';
 
 
 const URI_URL= 'https://pokeapi.co/api/v2/pokemon?limit=151'
 
-export default class GetInfoPokemon extends PureComponent {
+class GetInfoPokemon extends PureComponent {
     constructor(props){
         super(props);
         this.state = {
@@ -13,8 +14,9 @@ export default class GetInfoPokemon extends PureComponent {
           loading : false,
           initialPokemon: 0
         };
-      }
-    componentWillMount(){
+    }   
+    componentWillMount(){ 
+      console.log("componentWillMount")
       fetch(URI_URL)
         .then(response => response.json())
         .then(data=>{
@@ -27,28 +29,40 @@ export default class GetInfoPokemon extends PureComponent {
           });
     }
     updatePage = () => {
+      console.log("this.render()")
       this.render()
     }    
-    handleClickNext = () => {
-      this.setState({
-          initialPokemon: this.state.initialPokemon+1,
+    handleClickNext = (event) => {
+      const incremento = parseInt(event.target.parentElement.getAttribute("valor"));
+      let suma = this.state.initialPokemon+incremento
+      if(suma<=149){
+        this.setState({
+          initialPokemon: suma,
           loading : true,
           fetched : true,
         }, this.updatePage);
       };
-    handleClickPrev = () => {
-      this.setState({
-        initialPokemon: this.state.initialPokemon-1,
-        loading : true,
-        fetched : true,
-      }, this.updatePage);
+    }
+
+    handleClickPrev = (event) => {
+      const decremento = parseInt(event.target.parentElement.getAttribute("valor"));
+      let resta = this.state.initialPokemon-decremento
+      if(resta>=0){
+        this.setState({
+          initialPokemon: resta,
+          loading : true,
+          fetched : true,
+        }, this.updatePage);
+      };
     };
+
     render(){
+      console.log("entro metodo render()", this.state)
       const {fetched, loading} = this.state;
       let content ;
-      if(fetched){
-        console.log(this.state.list[this.state.initialPokemon].url)
-        content = <Pokedex name={this.state.list[this.state.initialPokemon].name} url={this.state.list[this.state.initialPokemon].url} handleClickNext={this.handleClickNext} handleClickPrev={this.handleClickPrev}/>
+      if(fetched && (this.state.initialPokemon<=150 && this.state.initialPokemon>=0)){
+        //console.log(this.state.list[this.state.initialPokemon].url)
+        content = <Pokedex name={this.state.list[this.state.initialPokemon].name} url={this.state.list[this.state.initialPokemon].url} handleClickNext={this.handleClickNext} handleClickPrev={this.handleClickPrev} initialPokemon={this.state.initialPokemon}/>
         ;
       }else if(loading && !fetched){
           content = <p> Loading...</p>;
@@ -61,3 +75,9 @@ export default class GetInfoPokemon extends PureComponent {
       </div>)
     }
 }
+
+Pokedex.propTypes = {
+  initialPokemon: propTypesRange(0, 150)
+};
+
+export default GetInfoPokemon

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Pokedex from './Pokedex';
 
 
-const URI_URL= 'http://pokeapi.co/api/v2/pokemon?limit=151'
+const URI_URL= 'https://pokeapi.co/api/v2/pokemon?limit=151'
 
 export default class GetInfoPokemon extends PureComponent {
     constructor(props){

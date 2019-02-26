@@ -356,6 +356,7 @@ html, body{
 	{
 		display: block;
 		margin: 0 auto;
+		width: 175px!important;
 	}
 
 	div#topPicture
@@ -640,7 +641,7 @@ html, body{
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-bottom: 10px solid #111;
+		border-bottom: 10px solid #50fb05;
 
 		position: absolute;
 		top: 5px;
@@ -653,7 +654,7 @@ html, body{
 		height: 0;
 		border-left: 10px solid transparent;
 		border-right: 10px solid transparent;
-		border-top: 10px solid #111;
+		border-top: 10px solid #50fb05;
 
 		position: absolute;
 		bottom: 5px;

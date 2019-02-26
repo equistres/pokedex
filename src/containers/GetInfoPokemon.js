@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Pokedex from '../components/Pokedex'
+import React, { PureComponent } from 'react';
+import Pokedex from './Pokedex';
 
 
 const URI_URL= 'http://pokeapi.co/api/v2/pokemon?limit=151'
 
-export default class GetInfoPokemon extends Component {
+export default class GetInfoPokemon extends PureComponent {
     constructor(props){
         super(props);
         this.state = {
@@ -22,15 +22,33 @@ export default class GetInfoPokemon extends Component {
               list : data.results,
               loading : true,
               fetched : true,
-              initialPokemon: 5
+              initialPokemon: 0
             });
           });
     }
+    updatePage = () => {
+      this.render()
+    }    
+    handleClickNext = () => {
+      this.setState({
+          initialPokemon: this.state.initialPokemon+1,
+          loading : true,
+          fetched : true,
+        }, this.updatePage);
+      };
+    handleClickPrev = () => {
+      this.setState({
+        initialPokemon: this.state.initialPokemon-1,
+        loading : true,
+        fetched : true,
+      }, this.updatePage);
+    };
     render(){
       const {fetched, loading} = this.state;
       let content ;
       if(fetched){
-        content = <Pokedex name={this.state.list[this.state.initialPokemon].name} url={this.state.list[this.state.initialPokemon].url}/>
+        console.log(this.state.list[this.state.initialPokemon].url)
+        content = <Pokedex name={this.state.list[this.state.initialPokemon].name} url={this.state.list[this.state.initialPokemon].url} handleClickNext={this.handleClickNext} handleClickPrev={this.handleClickPrev}/>
         ;
       }else if(loading && !fetched){
           content = <p> Loading...</p>;

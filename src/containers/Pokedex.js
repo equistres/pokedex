@@ -1,10 +1,15 @@
 import React  from 'react';
 import Pokemon  from './Pokemon';
-import GetAditionalInfo from '../containers/GetAditionalInfo';
+import GetAditionalInfo from './GetAditionalInfo';
 
 let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/NOMBRE.png';
 
-export default function Pokedex(pokemon){
+ class Pokedex extends React.PureComponent{
+    constructor(props){
+        super(props);
+    }
+    render(){
+         console.log("entro a pokedex",this.props.url)
     return(
     <div id="pokedex">
         <div id="left">
@@ -30,7 +35,7 @@ export default function Pokedex(pokemon){
                 <div id="buttontopPicture1"></div>
                 <div id="buttontopPicture2"></div>
             </div>
-            <Pokemon Imagen={URL_IMAGES.replace("NOMBRE", pokemon.name)}/>
+            <Pokemon Imagen={URL_IMAGES.replace("NOMBRE", this.props.name)}/>
             <div id="buttonbottomPicture"></div>
             <div id="speakers">
                 <div className="sp"></div>
@@ -46,7 +51,7 @@ export default function Pokedex(pokemon){
             <div id="leftcross">
                 <div id="leftT"></div>
             </div>
-            <div id="topcross">
+            <div id="topcross" onClick={this.props.handleClickNext}>
                 <div id="upT"></div>
             </div>
             <div id="rightcross">
@@ -55,13 +60,13 @@ export default function Pokedex(pokemon){
             <div id="midcross">
                 <div id="midCircle"></div>
             </div>
-            <div id="botcross">
+            <div id="botcross" onClick={this.props.handleClickPrev}>
                 <div id="downT"></div>
             </div>
             </div>
         </div>
         <div id="right">
-        <GetAditionalInfo Url={pokemon.url}/>
+        <GetAditionalInfo Url={this.props.url}/>
         <div id="blueButtons1">
         <div className="blueButton"></div>
         <div className="blueButton"></div>
@@ -90,3 +95,6 @@ export default function Pokedex(pokemon){
     </div>
     )
 }
+}
+
+export default Pokedex;

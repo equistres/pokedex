@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-export default class GetAditionalInfo extends Component {
+class GetAditionalInfo extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -10,7 +10,12 @@ export default class GetAditionalInfo extends Component {
           loading : false
         };
       }
+    test = () => {
+      console.log();
+    }
+
     componentWillMount(){
+      
       fetch(this.props.Url)
         .then(response => response.json())
         .then(data=>{
@@ -18,11 +23,23 @@ export default class GetAditionalInfo extends Component {
               pokemon : data,
               loading : true,
               fetched : true
-            });
+            }, this.test);
           });
     }
+    componentWillReceiveProps(newprop){
+      console.log("componentWillReceiveProps", newprop, this.props.Url)
+      fetch(newprop.Url)
+      .then(response => response.json())
+      .then(data=>{
+          this.setState({
+            pokemon : data,
+            loading : true,
+            fetched : true
+          });
+        });
+    }    
     render(){
-        console.log("esta es la url en aditionalinfo", this.state)
+        console.log("esta es la url en aditionalinfo!!!", this.props.Url)
         const {fetched, loading, pokemon} = this.state;
         let types = [];
         let abilities = [];
@@ -57,3 +74,5 @@ export default class GetAditionalInfo extends Component {
         )
     }
 }
+
+export default GetAditionalInfo

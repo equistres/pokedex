@@ -1,7 +1,8 @@
 import React  from 'react';
 import Pokemon  from './Pokemon';
 import GetAditionalInfo from './GetAditionalInfo';
-import propTypesRange from 'prop-types-range'; 
+import propTypesRange from 'prop-types-range';
+import Search from './Search';
 
 let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/NOMBRE.png';
 
@@ -16,6 +17,8 @@ let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/de
             prevButton = <div id="botcross" onClick={this.props.handleClickPrev} valor="1"><div id="downT" className="greendown"></div></div>
             backButton = <div id="leftcross" onClick={this.props.handleClickPrev} valor="5"><div id="leftT" className="greenleft"></div></div>
         }
+        let idPokemon = this.props.initialPokemon+1;
+
     return(
     <div id="pokedex">
         <div id="left">
@@ -87,8 +90,8 @@ let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/de
         <div id="miniButtonGlass5"></div>
         <div id="barbutton3"></div>
         <div id="barbutton4"></div>
-        <div id="yellowBox1"></div>
-        <div id="yellowBox2"></div>
+        <div id="yellowBox1">Search Pokemon <br/><Search searchFn={this.props.searchFn}/></div>
+        <div id="yellowBox2"><br/><b>Pokemon Id:</b> {idPokemon}</div>
         <div id="bg_curve1_right"></div>
         <div id="bg_curve2_right"></div>
         <div id="curve1_right"></div>

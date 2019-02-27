@@ -15,8 +15,8 @@ class GetInfoPokemon extends PureComponent {
           initialPokemon: 0
         };
     }   
-    componentWillMount(){ 
-      console.log("componentWillMount")
+    componentDidMount(){ 
+      console.log("componentDidMount")
       fetch(URI_URL)
         .then(response => response.json())
         .then(data=>{
@@ -56,13 +56,29 @@ class GetInfoPokemon extends PureComponent {
       };
     };
 
+    buscarPokemon = (event) => {
+      let q = event.target.value;
+      if(q.length>=4){
+        var i;
+        for (i = 0; i < this.state.list.length; i++) { 
+          if(this.state.list[i].name.match(q)){
+            this.setState({
+              initialPokemon: i,
+              loading : true,
+              fetched : true,
+            }, this.updatePage);
+          }
+        }
+      }
+    }
+
     render(){
       console.log("entro metodo render()", this.state)
       const {fetched, loading} = this.state;
-      let content ;
+      let content;
       if(fetched && (this.state.initialPokemon<=150 && this.state.initialPokemon>=0)){
         //console.log(this.state.list[this.state.initialPokemon].url)
-        content = <Pokedex name={this.state.list[this.state.initialPokemon].name} url={this.state.list[this.state.initialPokemon].url} handleClickNext={this.handleClickNext} handleClickPrev={this.handleClickPrev} initialPokemon={this.state.initialPokemon}/>
+        content = <Pokedex name={this.state.list[this.state.initialPokemon].name} url={this.state.list[this.state.initialPokemon].url} handleClickNext={this.handleClickNext} handleClickPrev={this.handleClickPrev} initialPokemon={this.state.initialPokemon} searchFn={this.buscarPokemon}/>
         ;
       }else if(loading && !fetched){
           content = <p> Loading...</p>;

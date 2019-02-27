@@ -10,7 +10,7 @@ class GetAditionalInfo extends Component {
           loading : false
         };
     }
-    componentWillMount(){
+    componentDidMount(){
       fetch(this.props.Url)
         .then(response => response.json())
         .then(data=>{
@@ -53,8 +53,8 @@ class GetAditionalInfo extends Component {
                         <strong>Abilities :</strong> {abilities.toString()}<br/>
                         <strong>Height :</strong> {pokemon.height}<br/>
                         <strong>Weight :</strong> {pokemon.weight} lbs.
-                      </div>
-            ;
+                      </div>;
+
         }else if(loading && !fetched){
             content = <p> Loading...</p>;
         }

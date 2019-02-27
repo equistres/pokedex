@@ -1079,3 +1079,7 @@ html, body{
 .greenleft{
 	border-right: 10px solid #50fb05!important;
 }
+
+#buscador{
+	width: 138px;
+}

@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/pokedex/static/js/2.73674bc6.chunk.js"
   },
   {
-    "revision": "0cdb07befde2fbf96db9e7eae631ed80",
+    "revision": "d433cead0feef5cd1d60c0c7d9d759b4",
     "url": "/pokedex/index.html"
   }
 ];

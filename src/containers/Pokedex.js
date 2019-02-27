@@ -102,7 +102,7 @@ let URL_IMAGES = 'https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/de
         <div id="information"><h3>How to Use?</h3>
         <p>&#x25B2; and &#x25BC; navigate 1 pokemon</p>
         <p>&#9668; and &#9658; navigate 5 pokemon</p>
-        <p>or find pokemon by name: <code>Example pikachu</code></p>
+        <p>or find pokemon by name <mark>Example: pikachu</mark></p>
         </div>
         </div>
     )

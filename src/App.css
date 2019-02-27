@@ -986,7 +986,7 @@ html, body{
 
 }
 
-/* @media handheld and (orientation:portrait), (max-width:768px) {
+@media handheld and (orientation:portrait), (max-width:768px) {
 
 	div#pokedex
 	{
@@ -1065,7 +1065,7 @@ html, body{
 		display: none;
 	}
 
-} */
+}
 
 .greendown{
 	border-top: 10px solid #50fb05!important;

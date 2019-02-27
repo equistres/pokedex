@@ -57,7 +57,7 @@ class GetInfoPokemon extends PureComponent {
     };
 
     buscarPokemon = (event) => {
-      let q = event.target.value;
+      let q = event.target.value.toLowerCase()
       if(q.length>=4){
         var i;
         for (i = 0; i < this.state.list.length; i++) { 

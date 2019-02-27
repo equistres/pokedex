@@ -16,7 +16,7 @@ class GetInfoPokemon extends PureComponent {
         };
     }   
     componentDidMount(){ 
-      console.log("componentDidMount")
+      //console.log("componentDidMount")
       fetch(URI_URL)
         .then(response => response.json())
         .then(data=>{
@@ -29,7 +29,7 @@ class GetInfoPokemon extends PureComponent {
           });
     }
     updatePage = () => {
-      console.log("this.render()")
+      //console.log("this.render()")
       this.render()
     }    
     handleClickNext = (event) => {
@@ -73,7 +73,7 @@ class GetInfoPokemon extends PureComponent {
     }
 
     render(){
-      console.log("entro metodo render()", this.state)
+      //console.log("entro metodo render()", this.state)
       const {fetched, loading} = this.state;
       let content;
       if(fetched && (this.state.initialPokemon<=150 && this.state.initialPokemon>=0)){
